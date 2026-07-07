@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人荣誉与资质展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        /* ========== 顶部个人信息区 ========== */
+        .hero {
+            background: linear-gradient(135deg, #0c2442 0%, #1e3a8a 60%, #1d4ed8 100%);
+            color: #fff;
+            padding: 4rem 1.5rem 3.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a962, #e8c97b, #c9a962);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .position {
+            font-size: 1.15rem;
+            opacity: 0.92;
+            margin-bottom: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero .intro {
+            font-size: 0.95rem;
+            opacity: 0.82;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .hero .tags {
+            margin-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem 1rem;
+            font-size: 0.88rem;
+        }
+
+        .hero .tags span {
+            padding: 0.35rem 1rem;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* ========== 导航栏 ========== */
+        .nav-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        }
+
+        .nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 2rem;
+        }
+
+        .nav a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.45rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s ease;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            color: #1e3a8a;
+            border-bottom-color: #c9a962;
+        }
+
+        /* ========== 主内容区 ========== */
+        main {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 4.5rem;
+            scroll-margin-top: 90px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid #cbd5e1;
+            position: relative;
+        }
+
+        .section-header::before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #c9a962;
+        }
+
+        .section-number {
+            background: #1e3a8a;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-right: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.45rem;
+            color: #0c2442;
+            font-weight: 600;
+            flex: 1;
+            letter-spacing: 1px;
+        }
+
+        .section-count {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            background: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* ========== 图片网格 ========== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1.3rem;
+        }
+
+        .gallery-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+            border-color: #c9a962;
+        }
+
+        .gallery-item .img-box {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background: #f8fafc;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item .caption {
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #475569;
+            background: #fafbfc;
+            border-top: 1px solid #f1f5f9;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== 灯箱 ========== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.94);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 92%;
+            max-height: 92%;
+            position: relative;
+            text-align: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 6px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -3.2rem;
+            right: 0;
+            color: #fff;
+            font-size: 2.1rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.6rem;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.22);
+        }
+
+        .lightbox-prev { left: -4.5rem; }
+        .lightbox-next { right: -4.5rem; }
+
+        .lightbox-caption {
+            color: #e2e8f0;
+            margin-top: 1.1rem;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        /* ========== 页脚 ========== */
+        footer {
+            text-align: center;
+            padding: 2.8rem 1.5rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            background: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== 移动端适配 ========== */
+        @media (max-width: 768px) {
+            .hero { padding: 3rem 1rem 2.4rem; }
+            .hero h1 { font-size: 2rem; letter-spacing: 2px; }
+            .hero .position { font-size: 1rem; }
+            .hero .tags { gap: 0.5rem 0.7rem; font-size: 0.8rem; }
+            .nav { gap: 0.4rem 1.1rem; padding: 0.8rem 1rem; }
+            .nav a { font-size: 0.85rem; }
+            main { padding: 2.2rem 1rem; }
+            .section-title { font-size: 1.2rem; }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+                gap: 0.9rem;
+            }
+            .lightbox-nav {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.2rem;
+            }
+            .lightbox-prev { left: -3rem; }
+            .lightbox-next { right: -3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部个人信息 -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>个人荣誉与资质展示</h1>
+            <div class="position">Personal Honor & Qualification Portfolio</div>
+            <div class="intro">
+                汇总在校期间奖学金荣誉、资格证书、学科竞赛、科研立项、学生工作及集体荣誉，
+                全面呈现个人综合能力与成长成果。
+            </div>
+            <div class="tags">
+                <span>奖学金荣誉</span>
+                <span>资格证书</span>
+                <span>学科竞赛</span>
+                <span>科研实践</span>
+                <span>学生工作</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div class="nav-wrap">
+        <nav class="nav" id="nav"></nav>
+    </div>
+
+    <!-- 主内容 -->
+    <main id="main"></main>
+
+    <!-- 灯箱大图预览 -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+            <img src="" alt="" id="lightboxImg">
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 个人荣誉展示 · 仅供求职查阅 · 所有材料均属实</p>
+    </footer>
+
+    <script>
+        // ========== 配置区：可自行修改数量 ==========
+        const categories = [
+            { name: '01奖学金及荣誉称号', count: 18 },
+            { name: '02证书证明',       count: 13 },
+            { name: '03比赛获奖',       count: 29 },
+            { name: '04科研立项',       count: 16 },
+            { name: '05工作聘书',       count: 7  },
+            { name: '06团体荣誉',       count: 5  }
+        ];
+        const imgSuffix = '.jpg'; // 图片后缀，png则改为 '.png'
+        // ===========================================
+
+        const nav = document.getElementById('nav');
+        const main = document.getElementById('main');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        let currentImgList = [];
+        let currentIndex = 0;
+
+        // 生成导航与分类区块
+        categories.forEach((cat, catIdx) => {
+            // 导航链接
+            const link = document.createElement('a');
+            link.href = `#sec-${catIdx}`;
+            link.textContent = cat.name.replace(/^\d+/, '');
+            nav.appendChild(link);
+
+            // 分类区块
+            const section = document.createElement('section');
+            section.className = 'section';
+            section.id = `sec-${catIdx}`;
+
+            // 区块标题
+            const header = document.createElement('div');
+            header.className = 'section-header';
+
+            const num = document.createElement('div');
+            num.className = 'section-number';
+            num.textContent = String(catIdx + 1).padStart(2, '0');
+
+            const title = document.createElement('div');
+            title.className = 'section-title';
+            title.textContent = cat.name;
+
+            const count = document.createElement('div');
+            count.className = 'section-count';
+            count.textContent = `共 ${cat.count} 项`;
+
+            header.appendChild(num);
+            header.appendChild(title);
+            header.appendChild(count);
+            section.appendChild(header);
+
+            // 图片网格
+            const gallery = document.createElement('div');
+            gallery.className = 'gallery';
+
+            for (let i = 1; i <= cat.count; i++) {
+                const numStr = String(i).padStart(2, '0');
+                const src = `${cat.name}/${numStr}${imgSuffix}`;
+
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+
+                const imgBox = document.createElement('div');
+                imgBox.className = 'img-box';
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `${cat.name} 第${numStr}项`;
+                img.loading = 'lazy';
+
+                const cap = document.createElement('div');
+                cap.className = 'caption';
+                cap.textContent = `第 ${numStr} 项`;
+
+                imgBox.appendChild(img);
+                item.appendChild(imgBox);
+                item.appendChild(cap);
+                gallery.appendChild(item);
+
+                // 点击打开大图
+                item.addEventListener('click', () => {
+                    openLightbox(catIdx, i - 1);
+                });
+            }
+
+            section.appendChild(gallery);
+            main.appendChild(section);
+        });
+
+        // 灯箱功能
+        function openLightbox(catIdx, imgIdx) {
+            const cat = categories[catIdx];
+            currentImgList = [];
+            for (let i = 1; i <= cat.count; i++) {
+                const numStr = String(i).padStart(2, '0');
+                currentImgList.push({
+                    src: `${cat.name}/${numStr}${imgSuffix}`,
+                    text: `${cat.name} · 第 ${numStr} 项`
+                });
+            }
+            currentIndex = imgIdx;
+            renderLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderLightbox() {
+            lightboxImg.src = currentImgList[currentIndex].src;
+            lightboxCaption.textContent = currentImgList[currentIndex].text;
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function prevImg() {
+            currentIndex = (currentIndex - 1 + currentImgList.length) % currentImgList.length;
+            renderLightbox();
+        }
+
+        function nextImg() {
+            currentIndex = (currentIndex + 1) % currentImgList.length;
+            renderLightbox();
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', prevImg);
+        document.getElementById('lightboxNext').addEventListener('click', nextImg);
+
+        // 点击背景关闭
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // 键盘快捷键
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImg();
+            if (e.key === 'ArrowRight') nextImg();
+        });
+    </script>
+</body>
+</html>
