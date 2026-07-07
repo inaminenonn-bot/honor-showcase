@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人荣誉与资质展示</title>
+    <title>谢雨捷 · 个人荣誉与资质展示</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +26,7 @@
         .hero {
             background: linear-gradient(135deg, #0c2442 0%, #1e3a8a 60%, #1d4ed8 100%);
             color: #fff;
-            padding: 4rem 1.5rem 3.2rem;
+            padding: 4.5rem 1.5rem 3.8rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -42,6 +42,44 @@
             background: linear-gradient(90deg, #c9a962, #e8c97b, #c9a962);
         }
 
+        /* 背景装饰图案 */
+        .hero-deco .circle {
+            position: absolute;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-deco .circle-1 {
+            width: 320px;
+            height: 320px;
+            top: -160px;
+            left: -100px;
+        }
+        .hero-deco .circle-2 {
+            width: 220px;
+            height: 220px;
+            bottom: -110px;
+            right: -60px;
+        }
+        .hero-deco .line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.4), transparent);
+            pointer-events: none;
+        }
+        .hero-deco .line-1 {
+            width: 160px;
+            top: 20%;
+            right: 12%;
+            transform: rotate(15deg);
+        }
+        .hero-deco .line-2 {
+            width: 120px;
+            bottom: 25%;
+            left: 10%;
+            transform: rotate(-10deg);
+        }
+
         .hero-content {
             position: relative;
             z-index: 1;
@@ -52,41 +90,54 @@
         .hero h1 {
             font-size: 2.6rem;
             font-weight: 600;
-            letter-spacing: 4px;
-            margin-bottom: 0.6rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
         }
 
-        .hero .position {
+        .hero .profile {
             font-size: 1.15rem;
             opacity: 0.92;
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.6rem;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: #e8c97b;
         }
 
         .hero .intro {
             font-size: 0.95rem;
-            opacity: 0.82;
+            opacity: 0.85;
             max-width: 680px;
             margin: 0 auto;
             line-height: 1.9;
         }
 
-        .hero .tags {
-            margin-top: 1.6rem;
+        .hero-stats {
+            margin-top: 2.2rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.6rem 1rem;
-            font-size: 0.88rem;
+            gap: 1.2rem;
         }
 
-        .hero .tags span {
-            padding: 0.35rem 1rem;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(4px);
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
+            padding: 0.9rem 1.6rem;
+            backdrop-filter: blur(6px);
+            min-width: 140px;
+        }
+
+        .hero-stat-num {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e8c97b;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
 
         /* ========== 导航栏 ========== */
@@ -219,7 +270,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .gallery-item img {
@@ -346,10 +396,12 @@
 
         /* ========== 移动端适配 ========== */
         @media (max-width: 768px) {
-            .hero { padding: 3rem 1rem 2.4rem; }
+            .hero { padding: 3rem 1rem 2.8rem; }
             .hero h1 { font-size: 2rem; letter-spacing: 2px; }
-            .hero .position { font-size: 1rem; }
-            .hero .tags { gap: 0.5rem 0.7rem; font-size: 0.8rem; }
+            .hero .profile { font-size: 1rem; }
+            .hero-stats { gap: 0.8rem; margin-top: 1.8rem; }
+            .hero-stat { min-width: 110px; padding: 0.7rem 1.2rem; }
+            .hero-stat-num { font-size: 1.2rem; }
             .nav { gap: 0.4rem 1.1rem; padding: 0.8rem 1rem; }
             .nav a { font-size: 0.85rem; }
             main { padding: 2.2rem 1rem; }
@@ -372,19 +424,34 @@
 
     <!-- 顶部个人信息 -->
     <div class="hero">
+        <div class="hero-deco">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+        </div>
+
         <div class="hero-content">
-            <h1>个人荣誉与资质展示</h1>
-            <div class="position">Personal Honor & Qualification Portfolio</div>
+            <h1>谢雨捷 · 个人荣誉与资质展示</h1>
+            <div class="profile">华中师范大学 · 部属公费师范生</div>
             <div class="intro">
                 汇总在校期间奖学金荣誉、资格证书、学科竞赛、科研立项、学生工作及集体荣誉，
-                全面呈现个人综合能力与成长成果。
+                全面呈现个人综合素养、教学实践能力与成长成果。
             </div>
-            <div class="tags">
-                <span>奖学金荣誉</span>
-                <span>资格证书</span>
-                <span>学科竞赛</span>
-                <span>科研实践</span>
-                <span>学生工作</span>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-num">88+</div>
+                    <div class="hero-stat-label">荣誉成果</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">6类</div>
+                    <div class="hero-stat-label">能力维度</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">师范方向</div>
+                    <div class="hero-stat-label">求职定位</div>
+                </div>
             </div>
         </div>
     </div>
@@ -409,7 +476,7 @@
     </div>
 
     <footer>
-        <p>© 个人荣誉展示 · 仅供求职查阅 · 所有材料均属实</p>
+        <p>© 谢雨捷 个人荣誉展示 · 仅供求职查阅</p>
     </footer>
 
     <script>
